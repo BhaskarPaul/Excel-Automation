@@ -1,0 +1,424 @@
+Python 3.7.4 (tags/v3.7.4:e09359112e, Jul  8 2019, 19:29:22) [MSC v.1916 32 bit (Intel)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.14.0 -- An enhanced Interactive Python. Type '?' for help.
+PyDev console: using IPython 7.14.0
+Python 3.7.4 (tags/v3.7.4:e09359112e, Jul  8 2019, 19:29:22) [MSC v.1916 32 bit (Intel)] on win32
+import openpyxl
+workbook = openpyxl.load_workbook("./Book1.xlsx")
+workbook.properties
+Out[4]:
+<openpyxl.packaging.core.DocumentProperties object>
+Parameters:
+creator='BHASKAR', title=None, description=None, subject=None, identifier=None, language=None, created=datetime.datetime(2020, 8, 1, 11, 13, 53), modified=datetime.datetime(2020, 8, 1, 11, 38, 29), lastModifiedBy='BHASKAR', category=None, contentStatus=None, version=None, revision=None, keywords=None, lastPrinted=None
+workbook.sheetnames
+Out[5]: ['Sheet1', 'Sheet2', 'Sheet3']
+workbook.active
+Out[6]: <Worksheet "Sheet1">
+workbook.create_sheet('TestSheet')
+Out[7]: <Worksheet "TestSheet">
+workbook.save("./Book1.xlsx")
+Traceback (most recent call last):
+  File "C:\Users\BHASKAR\AppData\Roaming\Python\Python37\site-packages\IPython\core\interactiveshell.py", line 3331, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File "<ipython-input-8-28f9b2ae4f85>", line 1, in <module>
+    workbook.save("./Book1.xlsx")
+  File "C:\Python 3.7\lib\site-packages\openpyxl\workbook\workbook.py", line 397, in save
+    save_workbook(self, filename)
+  File "C:\Python 3.7\lib\site-packages\openpyxl\writer\excel.py", line 292, in save_workbook
+    archive = ZipFile(filename, 'w', ZIP_DEFLATED, allowZip64=True)
+  File "C:\Python 3.7\lib\zipfile.py", line 1207, in __init__
+    self.fp = io.open(file, filemode)
+PermissionError: [Errno 13] Permission denied: './Book1.xlsx'
+workbook.save("./Book1.xlsx")
+workbook.sheetnames
+Out[10]: ['Sheet1', 'Sheet2', 'Sheet3', 'TestSheet']
+sheet = workbook['TestSheet']
+workbook.remove(sheet)
+workbook.sheetnames
+Out[13]: ['Sheet1', 'Sheet2', 'Sheet3']
+del workbook['TestSheet']
+Traceback (most recent call last):
+  File "C:\Users\BHASKAR\AppData\Roaming\Python\Python37\site-packages\IPython\core\interactiveshell.py", line 3331, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File "<ipython-input-14-4c4cd575ee59>", line 1, in <module>
+    del workbook['TestSheet']
+  File "C:\Python 3.7\lib\site-packages\openpyxl\workbook\workbook.py", line 281, in __delitem__
+    sheet = self[key]
+  File "C:\Python 3.7\lib\site-packages\openpyxl\workbook\workbook.py", line 278, in __getitem__
+    raise KeyError("Worksheet {0} does not exist.".format(key))
+KeyError: 'Worksheet TestSheet does not exist.'
+workbook.save("./Book1.xlsx")
+workbook.sheetnames
+Out[16]: ['Sheet1', 'Sheet2', 'Sheet3']
+sheet = workbook['Sheet1']
+sheet.title
+Out[18]: 'Sheet1'
+dir(sheet)
+Out[19]:
+['BREAK_COLUMN',
+ 'BREAK_NONE',
+ 'BREAK_ROW',
+ 'HeaderFooter',
+ 'ORIENTATION_LANDSCAPE',
+ 'ORIENTATION_PORTRAIT',
+ 'PAPERSIZE_A3',
+ 'PAPERSIZE_A4',
+ 'PAPERSIZE_A4_SMALL',
+ 'PAPERSIZE_A5',
+ 'PAPERSIZE_EXECUTIVE',
+ 'PAPERSIZE_LEDGER',
+ 'PAPERSIZE_LEGAL',
+ 'PAPERSIZE_LETTER',
+ 'PAPERSIZE_LETTER_SMALL',
+ 'PAPERSIZE_STATEMENT',
+ 'PAPERSIZE_TABLOID',
+ 'SHEETSTATE_HIDDEN',
+ 'SHEETSTATE_VERYHIDDEN',
+ 'SHEETSTATE_VISIBLE',
+ '_WorkbookChild__title',
+ '__class__',
+ '__delattr__',
+ '__delitem__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getitem__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__iter__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__setitem__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__',
+ '_add_cell',
+ '_add_column',
+ '_add_row',
+ '_cells',
+ '_cells_by_col',
+ '_cells_by_row',
+ '_charts',
+ '_clean_merge_range',
+ '_comments',
+ '_current_row',
+ '_default_title',
+ '_drawing',
+ '_get_cell',
+ '_hyperlinks',
+ '_id',
+ '_images',
+ '_invalid_row',
+ '_move_cell',
+ '_move_cells',
+ '_parent',
+ '_path',
+ '_pivots',
+ '_print_area',
+ '_print_cols',
+ '_print_rows',
+ '_rel_type',
+ '_rels',
+ '_setup',
+ '_tables',
+ 'active_cell',
+ 'add_chart',
+ 'add_data_validation',
+ 'add_image',
+ 'add_pivot',
+ 'add_table',
+ 'append',
+ 'auto_filter',
+ 'calculate_dimension',
+ 'cell',
+ 'col_breaks',
+ 'column_dimensions',
+ 'columns',
+ 'conditional_formatting',
+ 'data_validations',
+ 'delete_cols',
+ 'delete_rows',
+ 'dimensions',
+ 'encoding',
+ 'evenFooter',
+ 'evenHeader',
+ 'firstFooter',
+ 'firstHeader',
+ 'formula_attributes',
+ 'freeze_panes',
+ 'insert_cols',
+ 'insert_rows',
+ 'iter_cols',
+ 'iter_rows',
+ 'legacy_drawing',
+ 'max_column',
+ 'max_row',
+ 'merge_cells',
+ 'merged_cell_ranges',
+ 'merged_cells',
+ 'mime_type',
+ 'min_column',
+ 'min_row',
+ 'move_range',
+ 'oddFooter',
+ 'oddHeader',
+ 'orientation',
+ 'page_breaks',
+ 'page_margins',
+ 'page_setup',
+ 'paper_size',
+ 'parent',
+ 'path',
+ 'print_area',
+ 'print_options',
+ 'print_title_cols',
+ 'print_title_rows',
+ 'print_titles',
+ 'protection',
+ 'row_breaks',
+ 'row_dimensions',
+ 'rows',
+ 'scenarios',
+ 'selected_cell',
+ 'set_printer_settings',
+ 'sheet_format',
+ 'sheet_properties',
+ 'sheet_state',
+ 'sheet_view',
+ 'show_gridlines',
+ 'show_summary_below',
+ 'show_summary_right',
+ 'title',
+ 'unmerge_cells',
+ 'values',
+ 'views']
+sheet.active_cell
+Out[20]: 'E17'
+sheet.dimensions
+Out[21]: 'A1:F11'
+sheet.sheet_format
+Out[22]:
+<openpyxl.worksheet.dimensions.SheetFormatProperties object>
+Parameters:
+baseColWidth=8, defaultColWidth=None, defaultRowHeight=14.5, customHeight=None, zeroHeight=None, thickTop=None, thickBottom=None, outlineLevelRow=None, outlineLevelCol=0
+sheet.sheet_propertiesh
+Traceback (most recent call last):
+  File "C:\Users\BHASKAR\AppData\Roaming\Python\Python37\site-packages\IPython\core\interactiveshell.py", line 3331, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File "<ipython-input-23-a67253a26f2f>", line 1, in <module>
+    sheet.sheet_propertiesh
+AttributeError: 'Worksheet' object has no attribute 'sheet_propertiesh'
+sheet.sheet_properties
+Out[24]:
+<openpyxl.worksheet.properties.WorksheetProperties object>
+Parameters:
+codeName=None, enableFormatConditionsCalculation=None, filterMode=None, published=None, syncHorizontal=None, syncRef=None, syncVertical=None, transitionEvaluation=None, transitionEntry=None, tabColor=None, outlinePr=<openpyxl.worksheet.properties.Outline object>
+Parameters:
+applyStyles=None, summaryBelow=True, summaryRight=True, showOutlineSymbols=None, pageSetUpPr=<openpyxl.worksheet.properties.PageSetupProperties object>
+Parameters:
+autoPageBreaks=None, fitToPage=None
+sheet.sheet_state
+Out[25]: 'visible'
+sheet.sheet_view
+Out[26]:
+<openpyxl.worksheet.views.SheetView object>
+Parameters:
+windowProtection=None, showFormulas=None, showGridLines=None, showRowColHeaders=None, showZeros=None, rightToLeft=None, tabSelected=True, showRuler=None, showOutlineSymbols=None, defaultGridColor=None, showWhiteSpace=None, view=None, topLeftCell=None, colorId=None, zoomScale=None, zoomScaleNormal=None, zoomScaleSheetLayoutView=None, zoomScalePageLayoutView=None, zoomToFit=None, workbookViewId=0, pane=None, selection=[<openpyxl.worksheet.views.Selection object>
+Parameters:
+pane=None, activeCell='E17', activeCellId=None, sqref='E17']
+sheet.max_row
+Out[27]: 11
+sheet.max_column
+Out[28]: 6
+for i in sheet.values:
+   ...:     print(i)
+   ...:
+('ID', 'First Name', 'Last Name', 'Department', 'Phone', 'Address')
+(1, 'Luck', 'Phillip', 'Sales', 1234567890, '1st Address, Miami')
+(2, 'Jack', 'Darren', 'IT', 1234567891, '2nd Address, Miami')
+(3, 'Ken', 'Wood', 'IT', 1234567892, '3rd Address, Miami')
+(4, 'John', 'Wilson', 'Marketing', 1234567893, '4th Address, Miami')
+(5, 'Emily', 'Larson', 'Marketing', 1234567894, '5th Address, Miami')
+(6, 'Anna', 'Sullivan', 'Sales', 1234567895, '6th Address, Miami')
+(7, 'Richard', 'Smith', 'Logistics', 1234567896, '7th Address, Miami')
+(8, 'Ronnie', 'Moore', 'Sales', 1234567897, '8th Address, Miami')
+(9, 'Test', 'Drake', 'IT', 1234567898, '9th Address, Miami')
+(10, 'Wayne', 'Barker', 'Logistics', 1234567899, '10th Address, Miami')
+sheet['B7'].value
+Out[30]: 'Anna'
+sheet.cell(row = 2, column = 7).value
+sheet.cell(row = 6, column = 2).value
+Out[32]: 'Emily'
+cell = sheet['B7']
+cell.row
+Out[34]: 7
+cell.column
+Out[35]: 2
+cell.coordinate
+Out[36]: 'B7'
+cell.data_type
+Out[37]: 's'
+cell.encoding
+Out[38]: 'utf-8'
+cell.value = "Bhaskar"
+workbook.save("./Book1.xlsx")
+cell.value
+Out[41]: 'Bhaskar'
+cell.parent
+Out[42]: <Worksheet "Sheet1">
+cell = sheet['B8']
+cell.value
+Out[44]: 'Richard'
+dir(openpyxl)
+Out[45]:
+['DEFUSEDXML',
+ 'LXML',
+ 'NUMPY',
+ 'PANDAS',
+ 'Workbook',
+ '__author__',
+ '__author_email__',
+ '__builtins__',
+ '__cached__',
+ '__doc__',
+ '__file__',
+ '__license__',
+ '__loader__',
+ '__maintainer_email__',
+ '__name__',
+ '__package__',
+ '__path__',
+ '__spec__',
+ '__url__',
+ '__version__',
+ '_constants',
+ 'cell',
+ 'chart',
+ 'chartsheet',
+ 'comments',
+ 'compat',
+ 'constants',
+ 'descriptors',
+ 'drawing',
+ 'formatting',
+ 'formula',
+ 'load_workbook',
+ 'packaging',
+ 'pivot',
+ 'reader',
+ 'styles',
+ 'utils',
+ 'workbook',
+ 'worksheet',
+ 'writer',
+ 'xml']
+dir(openpyxl.styles)
+Out[46]:
+['Alignment',
+ 'Border',
+ 'Color',
+ 'DEFAULT_FONT',
+ 'Fill',
+ 'Font',
+ 'GradientFill',
+ 'NamedStyle',
+ 'NumberFormatDescriptor',
+ 'PatternFill',
+ 'Protection',
+ 'Side',
+ '__builtins__',
+ '__cached__',
+ '__doc__',
+ '__file__',
+ '__loader__',
+ '__name__',
+ '__package__',
+ '__path__',
+ '__spec__',
+ 'absolute_import',
+ 'alignment',
+ 'borders',
+ 'builtins',
+ 'cell_style',
+ 'colors',
+ 'differential',
+ 'fills',
+ 'fonts',
+ 'is_builtin',
+ 'is_date_format',
+ 'named_styles',
+ 'numbers',
+ 'protection',
+ 'proxy',
+ 'styleable',
+ 'stylesheet',
+ 'table']
+font = openpyxl.styles.Font(color = colors.RED, bold = True, italic = True)
+Traceback (most recent call last):
+  File "C:\Users\BHASKAR\AppData\Roaming\Python\Python37\site-packages\IPython\core\interactiveshell.py", line 3331, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File "<ipython-input-47-3af5e346c000>", line 1, in <module>
+    font = openpyxl.styles.Font(color = colors.RED, bold = True, italic = True)
+NameError: name 'colors' is not defined
+font = openpyxl.styles.Font(color = 'a83832', bold = True, italic = True)
+cell.font = fo
+Traceback (most recent call last):
+  File "C:\Users\BHASKAR\AppData\Roaming\Python\Python37\site-packages\IPython\core\interactiveshell.py", line 3331, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File "<ipython-input-49-fd7e1f09c318>", line 1, in <module>
+    cell.font = fo
+NameError: name 'fo' is not defined
+cell.font = font
+fill = openpyxl.styles.PatternFill(fill_type = 'solid', bgColor = 'F7FE2E')
+cell.fill = fill
+border = openpyxl.styles.Border(left = Side(border_style = 'double', color = '322FEC'),
+   ...:                                 rigth = Side(border_style = 'double', color = '322FEC'),
+   ...:                                 top = Side(border_style = 'double', color = '322FEC'),
+   ...:                                 bottom = Side(border_style = 'double', color = '322FEC'))
+Traceback (most recent call last):
+  File "C:\Users\BHASKAR\AppData\Roaming\Python\Python37\site-packages\IPython\core\interactiveshell.py", line 3331, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File "<ipython-input-53-e078add24502>", line 1, in <module>
+    border = openpyxl.styles.Border(left = Side(border_style = 'double', color = '322FEC'),
+NameError: name 'Side' is not defined
+border = openpyxl.styles.Border(left = openpyxl.styles.Side(border_style = 'double', color = '322FEC'),
+   ...:                                 rigth = openpyxl.styles.Side(border_style = 'double', color = '322FEC'),
+   ...:                                 top = openpyxl.styles.Side(border_style = 'double', color = '322FEC'),
+   ...:                                 bottom = openpyxl.styles.Side(border_style = 'double', color = '322FEC'))
+Traceback (most recent call last):
+  File "C:\Users\BHASKAR\AppData\Roaming\Python\Python37\site-packages\IPython\core\interactiveshell.py", line 3331, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File "<ipython-input-54-28d86d25e7c7>", line 4, in <module>
+    bottom = openpyxl.styles.Side(border_style = 'double', color = '322FEC'))
+TypeError: __init__() got an unexpected keyword argument 'rigth'
+border = openpyxl.styles.Border(left = openpyxl.styles.Side(border_style = 'double', color = '322FEC'),
+   ...:                                 right = openpyxl.styles.Side(border_style = 'double', color = '322FEC'),
+   ...:                                 top = openpyxl.styles.Side(border_style = 'double', color = '322FEC'),
+   ...:                                 bottom = openpyxl.styles.Side(border_style = 'double', color = '322FEC'))
+cell.border = border
+allign = openpyxl.styles.all
+Traceback (most recent call last):
+  File "C:\Users\BHASKAR\AppData\Roaming\Python\Python37\site-packages\IPython\core\interactiveshell.py", line 3331, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File "<ipython-input-57-ac9bf4bfe049>", line 1, in <module>
+    allign = openpyxl.styles.all
+AttributeError: module 'openpyxl.styles' has no attribute 'all'
+allign = openpyxl.styles.Alignment(horizontal = 'left')
+cell.alignment = allign
+workbook
+Out[60]: <openpyxl.workbook.workbook.Workbook at 0x5321f70>
+workbook.save("./Book1.xlsx")
